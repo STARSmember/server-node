@@ -6,22 +6,23 @@ import cors from 'cors'
 import helmet from 'helmet'
 
 import logger from './helpers/logger'
-import router from './routes'
-import { notFound, errorHandler } from './helpers/errors'
+import router from './routers'
+import { notFound, errorHandler } from './helper/errors'
 
-const port = Number(process.env.PORT)
+const port = parseInt(process.env.PORT, 10) || 3000
 
 const app = express()
 
+
 app.use(morgan(process.env.MORGAN_LOG))
-app.use(cors({ origin: process.env.CORS_ORIGIN }))
+app.use(cors({ origin: process.env.ORIGIN }))
 app.use(helmet())
 
-app.use('/', router)
+app.use(router)
 
 app.use(notFound)
 app.use(errorHandler)
 
-app.listen(port, () => {
-  logger.info(`Server running on port ${port}`)
-})
+app.listen(port, () =>
+logger.info(`Application started at http://localhost:${process.env.PORT}`),
+)
