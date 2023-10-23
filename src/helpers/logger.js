@@ -1,5 +1,5 @@
-import consola from 'consola'
+import pino from 'pino'
 
-const logger = consola
+const logger = pino({ prettyPrint: { colorize: true } })
 
 export default logger
