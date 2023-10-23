@@ -6,7 +6,7 @@ import cors from 'cors'
 import helmet from 'helmet'
 
 import logger from './helpers/logger'
-import router from './routers'
+import router from './routes'
 import { notFound, errorHandler } from './helper/errors'
 
 const port = parseInt(process.env.PORT, 10) || 3000
